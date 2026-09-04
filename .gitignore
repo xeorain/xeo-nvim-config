@@ -1,0 +1,13 @@
+*.swp
+*.swo
+*.swn
+*.sw?
+*.log
+/.repro
+/.tests
+/doc/tags
+/lazy-lock.json
+/build
+/debug
+/.idea/
+/.vscode/
