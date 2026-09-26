@@ -31,4 +31,28 @@ function M.decrypt_xeovim_token(token, passphrase)
   return vim.v.shell_error == 0 and res or nil
 end
 
+--- Makes use of the internal terminal to create a pager with color support.
+function M.colorize()
+  vim.wo.number = false
+  vim.wo.relativenumber = false
+  vim.wo.statuscolumn = ""
+  vim.wo.signcolumn = "no"
+  vim.opt.listchars = { space = " " }
+
+  local buf = vim.api.nvim_get_current_buf()
+
+  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+  while #lines > 0 and vim.trim(lines[#lines]) == "" do
+    lines[#lines] = nil
+  end
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, {})
+
+  -- Concatenate lines and send it to an internal terminal
+  vim.api.nvim_chan_send(vim.api.nvim_open_term(buf, {}), table.concat(lines, "\r\n"))
+
+  vim.keymap.set("n", "q", "<Cmd>qa!<CR>", { silent = true, buffer = buf })
+  vim.api.nvim_create_autocmd("TextChanged", { buffer = buf, command = "normal! G$" })
+  vim.api.nvim_create_autocmd("TermEnter", { buffer = buf, command = "stopinsert" })
+end
+
 return M
