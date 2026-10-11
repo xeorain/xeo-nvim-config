@@ -4,6 +4,9 @@
 -- XeoVim/lua/xeovim/config/option.lua for more preset options and global
 -- variables.
 
+--- Set it to true to enable battery mode (power saving) mode.
+vim.g.xeovim_use_bat_mode = false
+
 --- Set LSP logging level, valid options are "TRACE", "DEBUG", "INFO", "WARN"
 --- (preset), "ERROR" and "OFF".
 --- Set it to "ERROR" to prevent the log file from blowing too quickly.
