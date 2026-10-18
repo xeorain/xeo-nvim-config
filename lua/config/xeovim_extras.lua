@@ -62,6 +62,7 @@ return {
   "xeovim.plugins.extras.lang.toml",
   "xeovim.plugins.extras.lang.yaml",
 
-  --- Enable battery (power-saving) mode
+  --- Explicitly enable battery (power-saving) mode, you can also enable it by
+  --- setting `g.vim.xeovim_use_bat_mode` to true in `config/options.lua`.
   --"xeovim.plugins.extras.battery-mode",
 }

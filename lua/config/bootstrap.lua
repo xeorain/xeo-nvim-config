@@ -23,8 +23,9 @@ vim.opt.rtp:append(lazypath)
 
 local M = {}
 
--- The directory where your local XeoVim repository resides, used by "local" and
--- "dev" modes to locate the XeoVim local repository.
+-- The directory where the local XeoVim repository directory resides, used by
+-- "local" and "dev" modes to locate the XeoVim local repository.
+-- Change it path if the local XeoVim repository is located elsewhere.
 local dev_dir = vim.fn.expand("~/Projects/personal")
 
 local xeovim_token
