@@ -48,7 +48,7 @@ local function get_xeovim_token()
     end
 
     xeovim_token = require("util").decrypt_xeovim_token(xeovim_token_enc, passphrase)
-    if not xeovim_token then
+    if not xeovim_token or not vim.startswith(xeovim_token, "github_pat_") then
       vim.api.nvim_echo({
         { "\nInvalid passphrase for XeoVim token\n", "ErrorMsg" },
         { "Press any key to quit..." },
