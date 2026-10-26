@@ -1,26 +1,3 @@
--- Install lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local out = vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "--branch=stable",
-    "https://github.com/folke/lazy.nvim.git",
-    lazypath,
-  })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "Press any key to quit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
-end
-vim.opt.rtp:append(lazypath)
-
 local M = {}
 
 -- The directory where the local XeoVim repository directory resides, used by
@@ -77,6 +54,29 @@ function M.load(opts)
     xeovim_spec_shorthand = "XeoVim"
     xeovim_spec_url = "file://" .. dev_dir .. "/XeoVim"
   end
+
+  -- Install lazy.nvim
+  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    local out = vim.fn.system({
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--branch=stable",
+      "https://github.com/folke/lazy.nvim.git",
+      lazypath,
+    })
+    if vim.v.shell_error ~= 0 then
+      vim.api.nvim_echo({
+        { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+        { out, "WarningMsg" },
+        { "Press any key to quit..." },
+      }, true, {})
+      vim.fn.getchar()
+      os.exit(1)
+    end
+  end
+  vim.opt.rtp:append(lazypath)
 
   -- Construct settings for lazy.nvim
   opts = vim.tbl_deep_extend("force", {
