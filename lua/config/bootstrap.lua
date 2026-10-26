@@ -5,12 +5,19 @@ local M = {}
 -- Change it path if the local XeoVim repository is located elsewhere.
 local dev_dir = vim.fn.expand("~/Projects/personal")
 
-local xeovim_token
+local xeovim_token, xeovim_token_enc
 
-local function get_xeovim_token()
-  -- stylua: ignore
-  local xeovim_token_enc = "U2FsdGVkX18UTnWBFZw6X/epT1W+QqEfi6BhcxVSUIw5oSKWDm4NeIDByPBSLdIf/nUdy1NzMEABnSD+kSy2w6zXZxHcLLfKDS5jZVudQbZvGxsKf9aUJsJpfblMtwY+UTEeF8rpvOUvWzSJcbJRZA=="
+if jit.os == "Windows" and vim.fn.executable("openssl") ~= 1 then
+  -- If `openssl` is not available on Windows, fall back to a PowerShell script
+  -- implementation utilizing the .NET framework, which uses a slightly
+  -- different algorithm for token encryption/decryption.
+  xeovim_token_enc =
+  "WFZUMQAAJxA+H+BZRlGdl/lJd20buNpkKfErV+BYe2vDELIR6MOA7T5fc6BmZ3Y2Q9zkf+lvOZU+M643pY1Oduz3pcLB/VMuhF9UFzU0aDO26vJMwupWmwKPSwOOJLIYPGwWSsfh7HzuTNm1NGRVOuRebHwCNPO/eSIZv4Q7ynUEodHPyNbzvg=="
+else
+  xeovim_token_enc = "U2FsdGVkX18UTnWBFZw6X/epT1W+QqEfi6BhcxVSUIw5oSKWDm4NeIDByPBSLdIf/nUdy1NzMEABnSD+kSy2w6zXZxHcLLfKDS5jZVudQbZvGxsKf9aUJsJpfblMtwY+UTEeF8rpvOUvWzSJcbJRZA=="
+end
 
+local function get_xeovim_token(encrypted_token)
   local cache = vim.fn.stdpath("config") .. "/.xeovim.token"
   xeovim_token = vim.fn.filereadable(cache) == 1 and vim.fn.readfile(cache)[1] or nil
 
@@ -24,7 +31,7 @@ local function get_xeovim_token()
       vim.cmd("qa!")
     end
 
-    xeovim_token = require("util").decrypt_xeovim_token(xeovim_token_enc, passphrase)
+    xeovim_token = require("util").decrypt_xeovim_token(encrypted_token, passphrase)
     if not xeovim_token or not vim.startswith(xeovim_token, "github_pat_") then
       vim.api.nvim_echo({
         { "\nInvalid passphrase for XeoVim token\n", "ErrorMsg" },
@@ -47,7 +54,7 @@ function M.load(opts)
   local xeovim_spec_shorthand, xeovim_spec_url
 
   if xeovim_install_mode == "remote" then
-    get_xeovim_token()
+    get_xeovim_token(xeovim_token_enc)
     xeovim_spec_shorthand = "xeorain/XeoVim"
     xeovim_spec_url = "https://xeorain:" .. xeovim_token .. "@github.com/xeorain/XeoVim.git"
   else
