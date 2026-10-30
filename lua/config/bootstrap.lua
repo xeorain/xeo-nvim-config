@@ -105,6 +105,10 @@ function M.load(opts)
           --colorscheme = "tokyonight",
         },
       },
+      -- Import custom plugin specs
+      {
+        import = "plugins",
+      },
     },
     defaults = {
       -- Set to `true` load all plugins lazily by default.
