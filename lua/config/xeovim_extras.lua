@@ -41,19 +41,27 @@ return {
   "xeovim.plugins.extras.util.mini-hipatterns", -- highlight hex color code
   --"xeovim.plugins.extras.util.mkdnflow", -- a Markdown-based note-taking and workflow assistant
 
-  --- The image.nvim plugin supports multiple terminal image protocols
+  --- Image support in Neovim
+  ---
+  --- The `image.nvim` plugin supports multiple terminal image protocols
   --- including:
   --- * Kitty Grahpics Protocol: best performance, the default protocol to use
   ---   as long as your terminal supports.
-  --- * Ueberzug: much slower than Kitty Graphics Protocol, requiring the
-  ---   external `ueberzugpp` utility. Uou must set `use_ueberzug` to `true`
-  ---   in the `image` table below to use this protocol.
-  ---   dependencies except for ImageMagick, the fallback protocol to use if
-  ---   the above two are not supported.
+  --- * Ueberzug++: much slower than Kitty Graphics Protocol, requiring the
+  ---   external `ueberzugpp` utility.
+  --- * Sixel: slowest of three, but widely supported.
+  --- NOTE: `image.nvim` doesn't support Windows.
   ---
-  --- You need to use a terminal emulator that supports at least one protocol
-  --- mentioned in the enabled extra.
-  --"xeovim.plugins.extras.util.image", -- view image in Neovim (supporting more terminal image protocols)
+  --- The `snacks.nvim` image plugin supports Kitty Graphics Protocol only.
+  ---
+  --- Dependencies:
+  --- * A terminal emulator that supports at least one of these protocols
+  ---   supported by the enabled extra
+  --- * ImageMagicK
+  --- * `ueberzugpp` if using the Ueberzug++ protocol
+  ---
+  --"xeovim.plugins.extras.util.image", -- use `image.nvim` in Neovim (recommended on Linux/macOS)
+  --"xeovim.plugins.extras.util.snacks_image", -- use `snacks.nvim` image
 
   --- Enable language-specific extras as needed
   "xeovim.plugins.extras.lang.git",
