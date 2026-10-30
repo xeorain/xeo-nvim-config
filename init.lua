@@ -5,8 +5,6 @@ end
 
 --- Neovide configuration (tuned for 60Hz display)
 if vim.g.neovide then
-  vim.o.guifont = "Aporetic Sans Mono,Symbols Nerd Font Mono:h9"
-
   vim.g.neovide_no_idle = false                       -- Allow idle while not typing
   vim.g.neovide_refresh_rate = 60                     -- Match 60Hz display
   vim.g.neovide_refresh_rate_idle = 5                 -- Drop framework redraw while not typing
