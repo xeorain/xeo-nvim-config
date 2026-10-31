@@ -81,11 +81,19 @@ vim.g.xeovim_lsp_log_level = "ERROR"
 ---
 --vim.g.autoformat = true
 
+--- Plugin specific options ===================================================
+
 --- Enable/disable the animation feature in the Snacks plugin. (preset to false)
 ---
 --vim.g.snacks_animate = true
 
---- Markdown preview browser (optional)
---- XeoVim takes this setting as highest priority, and falls back to the
---- $BROWSER environment variable, and system default.
---vim.g.mkdp_browser = "firefox"
+--- Markdown preview options (for sammaji/markdown-preview.nvim)
+--- See https://github.com/sammaji/markdown-preview.nvim#configuration
+---
+--- A string or an array to specify a web browser used for markdown preview
+--- instead of the system default
+--vim.g.mkdp_browser = { "brave-browser", "--new-window" }
+--- A string to specify theme style, valid options are "dark" (default), "light"
+--vim.g.mkdp_theme = "light"
+--- A string to specify the CSS file for markdown preview
+--vim.g.mkdp_theme_css = vim.fn.expand("~/.config/nvim/markdown-preview.css")
