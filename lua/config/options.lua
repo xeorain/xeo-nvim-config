@@ -22,8 +22,8 @@ vim.g.xeovim_lsp_log_level = "ERROR"
 
 --- Choose a picker plugin, valid options:
 --- * "auto": leave it to XeoVim to decide (preset)
+--- * "fzf": use `xeovim.plugins.extras.editor.fzf`
 --- * "snacks": use `xeovim.plugins.extras.editor.snacks_picker` (default)
---- * "blink": use `xeovim.plugins.extras.editor.blink`
 --- * "telescope": use `xeovim.plugins.extras.editor.telescope`
 ---
 --vim.g.xeovim_picker = "snacks"
