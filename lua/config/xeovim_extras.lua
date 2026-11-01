@@ -43,25 +43,26 @@ return {
 
   --- Image support in Neovim
   ---
-  --- The `image.nvim` plugin supports multiple terminal image protocols
-  --- including:
-  --- * Kitty Grahpics Protocol: best performance, the default protocol to use
-  ---   as long as your terminal supports.
-  --- * Ueberzug++: much slower than Kitty Graphics Protocol, requiring the
-  ---   external `ueberzugpp` utility.
-  --- * Sixel: slowest of three, but widely supported.
+  --- The `image.nvim` plugin supports multiple terminal graphics protocols:
+  ---   * Kitty Grahpics Protocol: best performance, the default protocol to use
+  ---     as long as your terminal supports.
+  ---   * Ueberzug++: much slower than Kitty Graphics Protocol, requiring the
+  ---     external `ueberzugpp` utility, only working on Linux.
+  ---   * Sixel: oldest and slowest of three, but widely supported.
+  ---
   --- NOTE: `image.nvim` doesn't support Windows.
   ---
-  --- The `snacks.nvim` image plugin supports Kitty Graphics Protocol only.
+  --- The `image` plugin from `snacks.nvim` only supports the Kitty Graphics
+  --- Protocol (hence more lightweight)
   ---
   --- Dependencies:
-  --- * A terminal emulator that supports at least one of these protocols
-  ---   supported by the enabled extra
+  --- * A terminal emulator that supports at least one of the protocols required
+  ---   by the enabled extra
   --- * ImageMagicK
-  --- * `ueberzugpp` if using the Ueberzug++ protocol
+  --- * `ueberzugpp` if using the Ueberzug++ backend with `image.nvim`
   ---
-  --"xeovim.plugins.extras.util.image", -- use `image.nvim` in Neovim (recommended on Linux/macOS)
-  --"xeovim.plugins.extras.util.snacks_image", -- use `snacks.nvim` image
+  --"xeovim.plugins.extras.util.image", -- use `image.nvim` in Neovim (best compatibility)
+  --"xeovim.plugins.extras.util.snacks_image", -- use `snacks.nvim` image (more lightweight)
 
   --- Enable language-specific extras as needed
   "xeovim.plugins.extras.lang.git",

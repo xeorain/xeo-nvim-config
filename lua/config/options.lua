@@ -87,6 +87,20 @@ vim.g.xeovim_lsp_log_level = "ERROR"
 ---
 --vim.g.snacks_animate = true
 
+-- Choose backend for image.nvim
+-- * "auto":     leave it to XeoVim to decide
+-- * "kitty":    best performance, a terminal supporting Kitty Graphics Protocol
+--               required
+-- * "ueberzug": much slower than 'kitty', terminal agnostic but Linux only,
+--               external `ueberzugpp` binary required
+-- * "sixel":    most widely supported but worst performance, a terminal
+--               emulator supporting Sixel required
+--vim.g.xeovim_image_backend = "auto"
+
+-- A boolean indicating whether to force ueberzug backend in image.nvim when
+-- `vim.g.xeovim_image_backend` is 'auto'
+--vim.g.xeovim_image_force_auto_ueberzug = false
+
 --- Markdown preview options (for sammaji/markdown-preview.nvim)
 --- See https://github.com/sammaji/markdown-preview.nvim#configuration
 ---
