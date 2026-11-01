@@ -11,3 +11,4 @@
   bootstrap logic if necessary.
 - Edit `lua/config/options.lua` to customize XeoVim options.
 - Edit `lua/config/xeovim_extras.lua` to specify XeoVim extra modules.
+- Add custom plugin specs to `lua/plugins/*.lua` files.
