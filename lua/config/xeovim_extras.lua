@@ -61,8 +61,18 @@ return {
   --- * ImageMagicK
   --- * `ueberzugpp` if using the Ueberzug++ backend with `image.nvim`
   ---
+  --- INFO: Enable either of them manually, or based on the terminal
+  --- auto-detection result from XeoVim.
+  ---
+  --- Manual specification
   --"xeovim.plugins.extras.util.image", -- use `image.nvim` in Neovim (best compatibility)
-  --"xeovim.plugins.extras.util.snacks_image", -- use `snacks.nvim` image (more lightweight)
+  --"xeovim.plugins.extras.util.snacks_image", -- use `snacks.nvim` image (best performance)
+  ---
+  --- Choose `snacks.image` if the host terminal supports the kitty graphic
+  --- protocol, fall back to `image.nvim`
+  --- NOTE: The detection result may be inaccurate; consider manual way if the
+  --- result doesn't meet your expectation.
+  --XeoVim.image.term_has_kitty_gfx() and "xeovim.plugins.extras.util.snacks_image" or "xeovim.plugins.extras.util.image",
 
   --- Enable language-specific extras as needed
   "xeovim.plugins.extras.lang.git",
