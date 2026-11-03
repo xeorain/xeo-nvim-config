@@ -106,7 +106,13 @@ vim.g.xeovim_lsp_log_level = "ERROR"
 ---
 --- A string or an array to specify a web browser used for markdown preview
 --- instead of the system default
+--- e.g., Brave Browser on Linux
 --vim.g.mkdp_browser = { "brave-browser", "--new-window" }
+--- e.g., Brave Browser on Windows
+--vim.g.mkdp_browser = {
+--  vim.env.PROGRAMFILES .. "\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
+--  "--new-window",
+--}
 --- A string to specify theme style, valid options are "dark" (default), "light"
 --vim.g.mkdp_theme = "light"
 --- A string to specify the CSS file for markdown preview
