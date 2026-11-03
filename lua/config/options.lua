@@ -110,4 +110,4 @@ vim.g.xeovim_lsp_log_level = "ERROR"
 --- A string to specify theme style, valid options are "dark" (default), "light"
 --vim.g.mkdp_theme = "light"
 --- A string to specify the CSS file for markdown preview
---vim.g.mkdp_theme_css = vim.fn.expand("~/.config/nvim/markdown-preview.css")
+--vim.g.mkdp_theme_css = vim.fn.stdpath("config") .. "/markdown-preview.css"
